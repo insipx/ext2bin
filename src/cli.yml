@@ -1,0 +1,18 @@
+name: ext2bin
+version: "0.1-alpha"
+author: Andrew P. <dev@andrewplaza.dev>
+about: Parses Cargo.toml files to change a git dependency version
+args:
+    - hash:
+        short: h
+        long: hash
+        help: get extrinsics from a specific hash of a block
+        takes_value: true
+        required: false
+    - out:
+        short: o
+        long: out
+        help: sets one out file instead of using default output files/format.
+            Every extrinsic gets its own line
+        takes_value: true
+        required: false
