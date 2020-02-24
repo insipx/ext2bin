@@ -5,10 +5,10 @@ use std::{
     path::{Path, PathBuf},
 };
 use subxt::{Client, DefaultNodeRuntime as Runtime};
-mod cli;
+// mod cli;
 
 fn main() {
-    let conf = cli::parse_args();
+    // let conf = cli::parse_args();
 
     async_std::task::block_on(async move {
         let cli: Client<Runtime, _> = subxt::ClientBuilder::<Runtime>::new()
@@ -20,8 +20,9 @@ fn main() {
         let spec = version.spec_version;
         println!("SPEC: {}", spec);
 
-        let block = cli.block::<primitives::H256>(conf.hash).await.unwrap();
-        let meta = cli.raw_metadata(conf.hash).await.unwrap();
+        // gets a block and metadata at the indicated hash
+        let block = cli.block::<primitives::H256>(None).await.unwrap();
+        let meta = cli.raw_metadata(None).await.unwrap();
         let block_num = block.as_ref().unwrap().block.header.number;
         block
             .unwrap()
@@ -31,18 +32,19 @@ fn main() {
             .enumerate()
             .map(|(i, e)| (i, e.encode()))
             .for_each(|(i, e)| {
-                let file_name = if let Some(o) = &conf.out {
-                    o.clone()
-                } else {
-                    PathBuf::from(format!(
+                // let file_name = if let Some(o) = &conf.out {
+               //     o.clone()
+                //} else {
+                    let file_name = PathBuf::from(format!(
                         "./EXTRINSIC_spec_{}_block_{}_index_{}.bin",
                         spec, block_num, i
-                    ))
-                };
+                    ));
+                // };
                 write_bytes_to_file(file_name.as_path(), e);
             });
+        let meta_name = format!("spec_{}_block_{}_METADATA.bin", spec, block_num);
 
-        write_bytes_to_file(format!("spec_{}_block_{}_METADATA.bin", spec, block_num), meta.0)
+        write_bytes_to_file(Path::new(&meta_name), meta)
     });
 }
 
