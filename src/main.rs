@@ -21,6 +21,7 @@ fn main() {
         println!("SPEC: {}", spec);
 
         let block = cli.block::<primitives::H256>(conf.hash).await.unwrap();
+        let meta = cli.raw_metadata(conf.hash).await.unwrap();
         let block_num = block.as_ref().unwrap().block.header.number;
         block
             .unwrap()
@@ -40,6 +41,8 @@ fn main() {
                 };
                 write_bytes_to_file(file_name.as_path(), e);
             });
+
+        write_bytes_to_file(format!("spec_{}_block_{}_METADATA.bin", spec, block_num), meta.0)
     });
 }
 
