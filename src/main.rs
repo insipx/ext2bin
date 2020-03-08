@@ -41,8 +41,8 @@ fn main() {
                 };
                 write_bytes_to_file(file_name.as_path(), e);
             });
-
-        write_bytes_to_file(format!("spec_{}_block_{}_METADATA.bin", spec, block_num), meta.0)
+        let meta_path = format!("spec_{}_block_{}_METADATA.bin", spec, block_num);
+        write_bytes_to_file(Path::new(meta_path.as_str()), meta)
     });
 }
 

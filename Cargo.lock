@@ -2470,6 +2470,7 @@ dependencies = [
 [[package]]
 name = "substrate-subxt"
 version = "0.4.0"
+source = "git+https://github.com/insipx/substrate-subxt?branch=patched#d6efa6e2ea081d1dad1abee0fd0d78d7a37df32c"
 dependencies = [
  "frame-metadata",
  "frame-support",
