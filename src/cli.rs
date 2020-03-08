@@ -36,7 +36,7 @@ pub fn parse_args() -> Configuration {
     let matches = App::from_yaml(yaml).get_matches();
     let mut config = ConfigurationBuilder::default();
 
-    let hash = if let Some(h) = value_t!(matches, "block", String).ok() {
+    let hash = if let Some(h) = value_t!(matches, "hash", String).ok() {
         Some(H256::from_str(&h).expect("Hash should be H256 type"))
     } else {
         None
