@@ -4,18 +4,18 @@ use std::{
     io::prelude::*,
     path::{Path, PathBuf},
 };
-use subxt::{Client, DefaultNodeRuntime as Runtime};
+use subxt::{ClientBuilder, KusamaRuntime as Runtime};
 mod cli;
 
 fn main() {
     let conf = cli::parse_args();
 
     async_std::task::block_on(async move {
-        let cli: Client<Runtime, _> = subxt::ClientBuilder::<Runtime>::new()
+        let cli: ClientBuilder::<Runtime>::new()
+            .set_url("wss://kusama-rpc.polkadot.io")
             .build()
-            .await
-            .unwrap();
-
+            .await?;
+        
         let version = cli.version();
         let spec = version.spec_version;
         println!("SPEC: {}", spec);
