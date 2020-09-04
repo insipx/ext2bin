@@ -14,3 +14,4 @@ codec = { version = "1.1", package = "parity-scale-codec" }
 async-std = "1.5.0"
 clap = { version = "2.33.0", features = ["yaml"] }
 derive_builder = "0.9.0"
+anyhow = "1.0"

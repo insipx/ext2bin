@@ -16,3 +16,9 @@ args:
             Every extrinsic gets its own line
         takes_value: true
         required: false
+    - url:
+        short: u
+        long: url
+        help: sets url to chain RPC. Default is `wss://kusama-rpc.polkadot.io`
+        takes_value: true
+        required: false

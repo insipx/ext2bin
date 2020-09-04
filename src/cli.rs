@@ -29,6 +29,7 @@ use std::{path::PathBuf, str::FromStr};
 pub struct Configuration {
     pub hash: Option<H256>,
     pub out: Option<PathBuf>,
+    pub url: Option<String>,
 }
 
 pub fn parse_args() -> Configuration {
@@ -42,8 +43,9 @@ pub fn parse_args() -> Configuration {
         None
     };
     config.hash(hash);
-
+    let url = value_t!(matches, "url", String) .ok();
     let out = value_t!(matches, "out", PathBuf).ok();
+    config.url(url);
     config.out(out);
 
     config.build().expect("Could not build config")
