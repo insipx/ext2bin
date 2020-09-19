@@ -27,7 +27,7 @@ async fn async_main() -> Result<(), anyhow::Error> {
         .build()
         .await?;
     
-    let version = cli.runtime_version(None).await?;
+    let version = cli.runtime_version(conf.hash).await?;
     let spec = version.spec_version;
     println!("SPEC: {}", spec);
 
