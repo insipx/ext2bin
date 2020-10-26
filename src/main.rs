@@ -21,7 +21,7 @@ async fn async_main() -> Result<(), anyhow::Error> {
     } else {
         String::from("wss://kusama-rpc.polkadot.io")
     };
-
+    
     let cli = ClientBuilder::<Runtime>::new()
         .set_url(url.as_str())
         .build()

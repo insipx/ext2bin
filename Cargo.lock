@@ -105,6 +105,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "async-attributes"
+version = "1.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "efd3d156917d94862e779f356c5acae312b08fd3121e792c857d7928c8088423"
+dependencies = [
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "async-channel"
 version = "1.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -163,6 +173,7 @@ version = "1.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46c8da367da62b8ff2313c406c9ac091c1b31d67a165becdd2de380d846260f7"
 dependencies = [
+ "async-attributes",
  "async-executor",
  "async-io",
  "async-mutex",
@@ -3362,8 +3373,9 @@ dependencies = [
 [[package]]
 name = "substrate-subxt"
 version = "0.12.0"
-source = "git+https://github.com/insipx/substrate-subxt#70f13f616ce337292c9e79722fdd06e35cabd614"
+source = "git+https://github.com/insipx/substrate-subxt#53df90fb0927b6663a706e2f56b68dd2dc6fcc48"
 dependencies = [
+ "async-std",
  "frame-metadata",
  "frame-support",
  "futures 0.3.5",
@@ -3389,7 +3401,7 @@ dependencies = [
 [[package]]
 name = "substrate-subxt-proc-macro"
 version = "0.12.0"
-source = "git+https://github.com/insipx/substrate-subxt#70f13f616ce337292c9e79722fdd06e35cabd614"
+source = "git+https://github.com/insipx/substrate-subxt#53df90fb0927b6663a706e2f56b68dd2dc6fcc48"
 dependencies = [
  "heck",
  "proc-macro-crate",
